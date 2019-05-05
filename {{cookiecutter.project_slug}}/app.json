@@ -2,7 +2,13 @@
   "name": "{{cookiecutter.project_name}}",
   "description": "{{cookiecutter.description}}",
   "repository": "https://github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}",
-  "keywords": ["ci", "python", "django", "salesforce", "github"],
+  "keywords": [
+    "ci",
+    "python",
+    "django",
+    "salesforce",
+    "github"
+  ],
   "env": {
     "DJANGO_ALLOWED_HOSTS": {
       "description": "Heroku proxies web requests and Django needs to be configured to allow the forwards",
@@ -26,7 +32,8 @@
     },
     "DB_ENCRYPTION_KEY": {
       "description": "A key for encrypting using cryptography.fernet. Generate using cryptography.fernet.Fernet.generate_key"
-    }{% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %},
+    }{% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %
+    },
     "AWS_ACCESS_KEY_ID": {
       "description": "The AWS Access Key ID for S3 storages."
     },
@@ -35,7 +42,8 @@
     },
     "AWS_BUCKET_NAME": {
       "description": "The S3 bucket name to use for S3 storages."
-    }{% endif %}
+    }{% endif %
+    }
   },
   "formation": {
     "web": {
@@ -58,14 +66,19 @@
   "image": "heroku/python",
   "addons": [
     "heroku-postgresql",
-    "heroku-redis",{% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %}
-    "bucketeer",{% endif %}
+    "heroku-redis",
+    {% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %
+    }
+    "bucketeer",
+    {% endif %
+    }
     "newrelic",
     "sentry"
   ],
   "buildpacks": [
-      {"url": "heroku/nodejs"},
-      {"url": "heroku/python"}
+    {
+      "url": "heroku/python"
+    }
   ],
   "environments": {
     "test": {
@@ -75,10 +88,12 @@
       },
       "env": {
         "DJANGO_SETTINGS_MODULE": "config.settings.test",
-        "DATABASE_URL": "sqlite:///test.db"{% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %},
+        "DATABASE_URL": "sqlite:///test.db"{% if cookiecutter.use_bucketeer_aws_for_file_storage == 'y' %
+        },
         "AWS_ACCESS_KEY_ID": "None",
         "AWS_SECRET_ACCESS_KEY": "None",
-        "AWS_BUCKET_NAME": "None"{% endif %}
+        "AWS_BUCKET_NAME": "None"{% endif %
+        }
       }
     }
   },

@@ -14,7 +14,5 @@
         "GPLv3",
         "Apache Software License 2.0"
     ],
-    "use_bucketeer_aws_for_file_storage": "y",
-    "node_version": "lts",
-    "yarn_version": "latest"
+    "use_bucketeer_aws_for_file_storage": "y"
 }
